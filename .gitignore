@@ -1,0 +1,4 @@
+.envrc
+pkg/
+vendor/
+tasks.pyc
