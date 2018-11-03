@@ -23,19 +23,6 @@ services:
     networks:
       shinobi_test_net:
         ipv4_address: 192.168.0.2
-  terraform:
-    build:
-      context: ./tests/docker
-      dockerfile: Dockerfile.terraform
-    container_name: terraform
-    volumes:
-      - ./tests/terraform:/go/src/shinobi/tests/terraform
-    working_dir: /go/src/shinobi/tests/terraform
-    command: tail -f /dev/null
-    networks:
-      shinobi_test_net:
-        ipv4_address: 192.168.0.3
-
 networks:
   shinobi_test_net:
     driver: bridge
