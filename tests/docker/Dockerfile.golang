@@ -1,0 +1,9 @@
+FROM golang:alpine
+RUN apk update && apk add git make bash gcc libc-dev python py2-pip jq && pip install awscli
+RUN go get github.com/mattn/gom
+RUN if [ ! -d "/root/.aws" ] ; then mkdir /root/.aws ; fi
+RUN if [ -f "/root/.aws/credentials" ] ; then rm -f /root/.aws/credentials ; fi
+RUN if [ ! -f "/root/.aws/credentials" ] ; then printf "[dummy_profile]\n\
+aws_access_key_id = AKxxxxxxxxxxxxxxxxxx\n\
+aws_secret_access_key = zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\n\
+region = ap-northeast-1" >> /root/.aws/credentials ; fi

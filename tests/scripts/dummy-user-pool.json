@@ -1,0 +1,52 @@
+{
+    "PoolName": "dummy-user-pool",
+    "Policies": {
+        "PasswordPolicy": {
+            "MinimumLength": 8,
+            "RequireUppercase": false,
+            "RequireLowercase": false,
+            "RequireNumbers": true,
+            "RequireSymbols": false
+        }
+    },
+    "AutoVerifiedAttributes": [
+        "email"
+    ],
+    "AliasAttributes": [
+        "email"
+    ],
+    "UsernameAttributes": [
+        "phone_number"
+    ],
+    "MfaConfiguration": "OFF",
+    "DeviceConfiguration": {
+        "ChallengeRequiredOnNewDevice": true,
+        "DeviceOnlyRememberedOnUserPrompt": true
+    },
+    "UserPoolTags": {
+        "KeyName": ""
+    },
+    "AdminCreateUserConfig": {
+        "AllowAdminCreateUserOnly": true
+    },
+    "Schema": [
+        {
+            "Name": "email",
+            "AttributeDataType": "String",
+            "DeveloperOnlyAttribute": true,
+            "Mutable": true,
+            "Required": true,
+            "NumberAttributeConstraints": {
+                "MinValue": "",
+                "MaxValue": ""
+            },
+            "StringAttributeConstraints": {
+                "MinLength": "",
+                "MaxLength": ""
+            }
+        }
+    ],
+    "UserPoolAddOns": {
+        "AdvancedSecurityMode": "ENFORCED"
+    }
+}

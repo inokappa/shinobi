@@ -1,0 +1,5 @@
+{
+    "ExplicitAuthFlows": [
+        "ADMIN_NO_SRP_AUTH"
+    ]
+}
