@@ -1,0 +1,45 @@
+version: '3'
+services:
+  moto_server:
+    build:
+      context: ./tests/docker
+      dockerfile: Dockerfile.moto_server
+    container_name: moto-server
+    command: ["moto_server", "cognito-idp", "-H", "0.0.0.0", "-p", "5000"]
+    ports:
+      - "5000:5000"
+    networks:
+      shinobi_test_net:
+        ipv4_address: 192.168.0.100
+  shinobi:
+    build:
+      context: ./tests/docker
+      dockerfile: Dockerfile.golang
+    container_name: shinobi
+    volumes:
+      - .:/go/src/shinobi
+    working_dir: /go/src/shinobi
+    command: tail -f /dev/null
+    networks:
+      shinobi_test_net:
+        ipv4_address: 192.168.0.2
+  terraform:
+    build:
+      context: ./tests/docker
+      dockerfile: Dockerfile.terraform
+    container_name: terraform
+    volumes:
+      - ./tests/terraform:/go/src/shinobi/tests/terraform
+    working_dir: /go/src/shinobi/tests/terraform
+    command: tail -f /dev/null
+    networks:
+      shinobi_test_net:
+        ipv4_address: 192.168.0.3
+
+networks:
+  shinobi_test_net:
+    driver: bridge
+    ipam:
+     driver: default
+     config:
+       - subnet: 192.168.0.0/24

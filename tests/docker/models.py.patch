@@ -1,0 +1,11 @@
+--- models.py   2018-11-03 00:45:28.730000000 +0000
++++ patch/models.py     2018-11-03 00:52:27.330000000 +0000
+@@ -24,7 +24,7 @@
+
+     def __init__(self, region, name, extended_config):
+         self.region = region
+-        self.id = str(uuid.uuid4())
++        self.id = "{}_{}".format(self.region, str(uuid.uuid4().hex))
+         self.name = name
+         self.status = None
+         self.extended_config = extended_config or {}
