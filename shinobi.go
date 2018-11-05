@@ -19,10 +19,12 @@ import (
     "golang.org/x/crypto/ssh/terminal"
     "github.com/olekukonko/tablewriter"
     "github.com/fatih/color"
+
+    "github.com/joho/godotenv"
 )
 
 const (
-    AppVersion = "0.0.3"
+    AppVersion = "0.0.4"
 )
 
 var (
@@ -250,6 +252,12 @@ func main() {
     if *argVersion {
         fmt.Println(AppVersion)
         os.Exit(0)
+    }
+
+    // .env ファイルから COGNITO_USER_POOL_ID と COGNITO_CLIENT_ID を読み取る.
+    err := godotenv.Load()
+    if err != nil {
+        fmt.Println(".env ファイルの読み込みに失敗しました.")
     }
 
     if os.Getenv("COGNITO_USER_POOL_ID") == "" {
