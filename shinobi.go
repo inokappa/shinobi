@@ -256,6 +256,9 @@ func main() {
 
     // .env ファイルから COGNITO_USER_POOL_ID と COGNITO_CLIENT_ID を読み取る.
     err := godotenv.Load()
+    if err != nil {
+        fmt.Println(".env ファイルの読み込みに失敗しました.")
+    }
 
     if os.Getenv("COGNITO_USER_POOL_ID") == "" {
         fmt.Println("Cognito User Pool ID (環境変数: COGNITO_USER_POOL_ID) を指定して下さい.")
