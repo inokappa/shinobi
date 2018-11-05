@@ -7,5 +7,5 @@ RUN if [ ! -f "/root/.aws/credentials" ] ; then printf "[dummy_profile]\n\
 aws_access_key_id = AKxxxxxxxxxxxxxxxxxx\n\
 aws_secret_access_key = zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\n\
 region = ap-northeast-1" >> /root/.aws/credentials ; fi
-ADD models.py.patch /root/
-RUN patch /usr/local/lib/python3.7/site-packages/moto/cognitoidp/models.py < /root/models.py.patch
+# ADD models.py.patch /root/
+# RUN patch /usr/local/lib/python3.7/site-packages/moto/cognitoidp/models.py < /root/models.py.patch
