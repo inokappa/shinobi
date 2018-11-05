@@ -19,6 +19,8 @@ import (
     "golang.org/x/crypto/ssh/terminal"
     "github.com/olekukonko/tablewriter"
     "github.com/fatih/color"
+
+    "github.com/joho/godotenv"
 )
 
 const (
@@ -251,6 +253,9 @@ func main() {
         fmt.Println(AppVersion)
         os.Exit(0)
     }
+
+    // .env ファイルから COGNITO_USER_POOL_ID と COGNITO_CLIENT_ID を読み取る.
+    err := godotenv.Load()
 
     if os.Getenv("COGNITO_USER_POOL_ID") == "" {
         fmt.Println("Cognito User Pool ID (環境変数: COGNITO_USER_POOL_ID) を指定して下さい.")
